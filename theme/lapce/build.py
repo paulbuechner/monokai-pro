@@ -1,13 +1,15 @@
-import sublate as sub
+from tools import sublate as sub
 
 print("[+] Lapce")
 
-sub.mkdir("src")
+out_dir = "output/lapce"
+template_path = out_dir + "/templates"
+
+sub.mkdir(out_dir + "/src")
 
 for theme in sub.data["colors"]:
-    sub.render(f"src/{theme['id']}.toml", "templates/theme.toml", {
+    sub.render(f"{out_dir}/src/{theme['id']}.toml", f"{template_path}/theme.toml", {
         "theme": theme
     })
 
-sub.rm("templates")
-sub.rm("build.py")
+sub.rm(template_path)
